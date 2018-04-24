@@ -20,7 +20,6 @@ var colorOfExtension = map[string]string{
 func ExtensionToColor(extension string) (color string) {
 	if color, ok := colorOfExtension[extension]; ok {
 		return color
-	} else {
-		return gray
 	}
+	return gray
 }
