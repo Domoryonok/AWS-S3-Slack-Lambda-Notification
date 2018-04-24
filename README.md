@@ -1,1 +1,1 @@
-Lambda function for Slack notification about items which uploaded to some s3 bucket
+Lambda function for notification about items which uploaded to some s3 bucket
