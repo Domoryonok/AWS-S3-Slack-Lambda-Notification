@@ -58,5 +58,5 @@ func (sm *SlackMessage) Send() {
 		return
 	}
 
-	defer resp.Body.Close()
+	resp.Body.Close()
 }
