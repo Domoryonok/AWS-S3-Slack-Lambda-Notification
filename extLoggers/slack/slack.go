@@ -42,15 +42,21 @@ func (sm *SlackMessage) Send() {
 	client := &http.Client{}
 
 	body, err := json.Marshal(sm)
-	utils.HandleError(err, "Marshalling")
+	if utils.HandleError(err, "Marshalling") {
+		return
+	}
 
 	req, err := http.NewRequest("POST", slackWebhookUrl, bytes.NewReader(body))
-	utils.HandleError(err, "Making new request")
+	if utils.HandleError(err, "Making new request") {
+		return
+	}
 
 	req.Header.Add("Content-Type", "application/json")
 
 	resp, err := client.Do(req)
-	utils.HandleError(err, "Sending slack request")
+	if utils.HandleError(err, "Sending slack request") {
+		return
+	}
 
 	defer resp.Body.Close()
 }

@@ -11,11 +11,13 @@ func getReadebleLogPath(path string) string {
 	return strings.Join(splitPath[len(splitPath) - 3:], "/")
 }
 
-func HandleError(err error, reason string) {
+func HandleError(err error, reason string) (errorExists bool) {
 	if err != nil {
 		_, file, line, _ := runtime.Caller(1)
 		file = getReadebleLogPath(file)
 
 		log.Fatalf("[.../%s:%d] - %s error : %v", file, line, reason, err)
+		return true
 	}
+	return false
 }
